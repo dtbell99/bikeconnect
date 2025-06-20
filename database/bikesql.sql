@@ -1,0 +1,1 @@
+create table bike(id serial primary key, brand text, model text, frame_size text, frame_material text, color text, owner text, updated timestamp);

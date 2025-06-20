@@ -57,11 +57,11 @@ body {
   text-decoration: none;
 }
 
-.card {
+/* .card {
   border: 0.2em solid black;
   border-radius: 8px;
   width: "100px";
-}
+} */
 
 .actionButton {
   text-decoration: none;

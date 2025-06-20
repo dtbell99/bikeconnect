@@ -1,14 +1,51 @@
-import { insertBike, queryBikeList, updateBike } from "../database/bike";
+import {
+  insertBike,
+  queryBike,
+  queryBikeList,
+  updateBike,
+} from "../database/bikedb";
 import { Bike } from "../model/bike";
-import { v4 as uuidv4 } from "uuid";
+
+type DBBike = {
+  id: number;
+  brand: string;
+  model: string;
+  frame_size?: string;
+  frame_material: string;
+  color: string;
+};
+
+function convertBikeFromDBBike(itm: DBBike) {
+  const bike: Bike = {
+    id: itm.id,
+    brand: itm.brand,
+    model: itm.model,
+    frameMaterial: itm.frame_material,
+  };
+  if (itm.frame_size) bike.frameSize = itm.frame_size;
+  if (itm.color) bike.color = itm.color;
+  return bike;
+}
 
 export async function getBikeList(owner: string) {
   console.log("getBikeList");
-  const bikeList = await queryBikeList(owner);
-  if (!bikeList || !bikeList.rows) {
-    return [];
+  const bikeList: Bike[] = [];
+  const resp = await queryBikeList(owner);
+  if (resp.rows) {
+    for (const itm of resp.rows) {
+      bikeList.push(convertBikeFromDBBike(itm));
+    }
   }
-  return bikeList.rows;
+  return bikeList;
+}
+
+export async function getBike(id: number, owner: string) {
+  console.log("getBike::" + id);
+  const resp = await queryBike(id, owner);
+  if (resp && resp.rows && resp.rows.length === 1) {
+    const bike = convertBikeFromDBBike(resp.rows[0]);
+    return bike;
+  }
 }
 
 export async function saveBike(bike: Bike, owner: string) {

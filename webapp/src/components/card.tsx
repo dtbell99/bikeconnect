@@ -4,16 +4,21 @@ type CardProps = {
   title: string;
   imgHref: string;
   link: string;
+  color: string;
 };
 
-const Card: React.FC<CardProps> = ({ title, imgHref, link }) => {
+const Card: React.FC<CardProps> = ({ title, imgHref, link, color }) => {
   return (
-    <div className="card">
-      <img src={imgHref} />
-      <div className="card-body">
-        <h5 className="card-title">{title}</h5>
-        <Link to={link}>Go somewhere</Link>
-      </div>
+    <div
+      className="card"
+      style={{ width: "18em", borderWidth: ".1em", borderColor: color }}
+    >
+      <Link to={link} style={{ textDecoration: "none", color: "black" }}>
+        <img src={imgHref} className="card-img-top" />
+        <div className="card-body">
+          <h5 className="card-title">{title}</h5>
+        </div>
+      </Link>
     </div>
   );
 };
