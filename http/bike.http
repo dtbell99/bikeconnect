@@ -1,0 +1,13 @@
+GET http://localhost:3000/bike/list
+
+###
+
+POST http://localhost:3000/bike/save
+content-type: application/json
+
+{
+    "brand": "Trek",
+    "model": "Domane",
+    "size": "54",
+    "frameMaterial": "Aluminum"
+}
