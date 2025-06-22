@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import Card from "../components/card";
+import BikeCard from "../components/bikecard";
 import type { Bike } from "../model/bike";
 import { Bicycle } from "react-bootstrap-icons";
 import { useEffect, useState } from "react";
@@ -10,12 +10,7 @@ function Catalog() {
   const bikes = bikeList.map((bike, indx) => {
     return (
       <div style={{ padding: "5px" }} key={indx}>
-        <Card
-          title={bike.brand + " " + bike.model}
-          link={`/bike?id=${bike.id}`}
-          imgHref=""
-          color={bike.color || "black"}
-        />
+        <BikeCard bike={bike} />
       </div>
     );
   });

@@ -53,7 +53,18 @@ function Catalog() {
     }
   }, []);
 
-  const saveButtonText = id === 0 ? "Add" : "Save";
+  const saveButtonText = id === 0 ? "Add" : "Update";
+
+  const uploadImage = () => {
+    const fileInput = document.getElementById("fid") as HTMLInputElement;
+    if (!fileInput) return;
+    const files = fileInput.files;
+    if (!files) return;
+    // TODO: Add check on number of files already uploaded and error if they are trying to go over the limit
+    for (const f of files) {
+      if (f.size > 800)
+    }
+  };
 
   return (
     <>
@@ -115,17 +126,17 @@ function Catalog() {
               </select>
             </div>
           </div>
-          <div className="forminput">
-            <div className="row">
-              <h3>Color</h3>
-              <div className="col-sm-3">
-                <input
-                  type="text"
-                  className="form-control"
-                  value={color}
-                  onChange={(e) => setColor(e.target.value)}
-                />
-              </div>
+        </div>
+        <div className="forminput">
+          <div className="row">
+            <h3>Color</h3>
+            <div className="col-sm-3">
+              <input
+                type="text"
+                className="form-control"
+                value={color}
+                onChange={(e) => setColor(e.target.value)}
+              />
             </div>
           </div>
         </div>
@@ -136,6 +147,13 @@ function Catalog() {
         >
           {saveButtonText}
         </button>
+        {id > 0 && (
+          <div className="forminput">
+            <h3>Images</h3>
+            <input type="file" id="fid" name="fname" accept="image/*" />
+            <button onClick={uploadImage}>Upload</button>
+          </div>
+        )}
       </div>
     </>
   );

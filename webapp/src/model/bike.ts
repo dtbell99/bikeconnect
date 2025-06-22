@@ -5,4 +5,5 @@ export type Bike = {
   frameSize?: string;
   frameMaterial: string;
   color?: string;
+  images?: string[];
 };
