@@ -8,16 +8,15 @@ export async function insertBike(bike: Bike, owner: string) {
     client.connect();
     console.log("insertBike");
     const result = await client.query(
-      "insert into bike (brand, model, frame_size, frame_material, color, owner, updated) values ($1, $2, $3, $4, $5, $6, $7) RETURNING id",
+      "insert into bikeconnect_bike (brand, model, frame_size, frame_material, color, updated) values ($1, $2, $3, $4, $5, $6) RETURNING id",
       [
         bike.brand,
         bike.model,
         bike.frameSize,
         bike.frameMaterial,
         bike.color,
-        owner,
         new Date(),
-      ]
+      ],
     );
     return result;
   } catch (err) {
@@ -43,7 +42,7 @@ export async function updateBike(bike: Bike, owner: string) {
         bike.color,
         bike.id,
         owner,
-      ]
+      ],
     );
     return result;
   } catch (err) {
@@ -61,7 +60,7 @@ export async function queryBikeList(owner: string) {
     console.log("queryBikeList");
     const bikeList = await client.query(
       "select * from bike where owner = $1 order by brand asc, model asc",
-      [owner]
+      [owner],
     );
     return bikeList;
   } catch (err) {
@@ -79,7 +78,7 @@ export async function queryBike(id: number, owner: string) {
     console.log("queryBikeList");
     const resp = await client.query(
       "select * from bike where owner = $1 and id=$2",
-      [owner, id]
+      [owner, id],
     );
     return resp;
   } catch (err) {

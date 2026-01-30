@@ -61,9 +61,8 @@ function Catalog() {
     const files = fileInput.files;
     if (!files) return;
     // TODO: Add check on number of files already uploaded and error if they are trying to go over the limit
-    for (const f of files) {
-      if (f.size > 800)
-    }
+    // for (const f of files) {
+    // }
   };
 
   return (
