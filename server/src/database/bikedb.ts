@@ -33,7 +33,7 @@ export async function updateBike(bike: Bike, owner: string) {
     client.connect();
     console.log("insertBike");
     const result = await client.query(
-      "update bike set brand=$1, model=$2, frame_size=$3, frame_material=$4, color=$5 where id=$6 and owner=$7",
+      "update bikeconnect_bike set brand=$1, model=$2, frame_size=$3, frame_material=$4, color=$5 where id=$6 and owner=$7",
       [
         bike.brand,
         bike.model,
@@ -59,7 +59,7 @@ export async function queryBikeList(owner: string) {
     client.connect();
     console.log("queryBikeList");
     const bikeList = await client.query(
-      "select * from bike where owner = $1 order by brand asc, model asc",
+      "select * from bikeconnect_bike where owner = $1 order by brand asc, model asc",
       [owner],
     );
     return bikeList;
@@ -77,7 +77,7 @@ export async function queryBike(id: number, owner: string) {
     client.connect();
     console.log("queryBikeList");
     const resp = await client.query(
-      "select * from bike where owner = $1 and id=$2",
+      "select * from bikeconnect_bike where owner = $1 and id=$2",
       [owner, id],
     );
     return resp;

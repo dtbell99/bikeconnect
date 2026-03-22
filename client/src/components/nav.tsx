@@ -1,79 +1,87 @@
-import { useEffect, useState } from "react";
 import logo from "../assets/nav_logo.png";
-import { Bicycle, People, Shop } from "react-bootstrap-icons";
 import { NavLink } from "react-router";
 
-const hideShowWidth = 600;
-
 function Nav() {
-  const [showTitle, setShowTitle] = useState<boolean>(
-    window.innerWidth < hideShowWidth ? false : true
-  );
-
-  useEffect(() => {
-    window.addEventListener("resize", () => {
-      const innerWidth = window.innerWidth;
-      let newShowTitle = false;
-      if (innerWidth >= hideShowWidth) newShowTitle = true;
-      setShowTitle((prev) => (prev !== newShowTitle ? newShowTitle : prev));
-    });
-  }, []);
-
-  const title = "BikeConnect";
-  const collection = "Collection";
-  const friends = "Friends";
-  const market = "Marketplace";
-
   return (
-    <div className="bcnav">
-      <NavLink to="/" className="icon">
+    <nav className="navbar navbar-expand-sm navbar-light bg-light">
+      <NavLink
+        to="/"
+        className="icon"
+        style={{ fontFamily: "arial", fontWeight: "bold" }}
+      >
         <img
           src={logo}
           alt="Logo"
           width="48"
           style={{ verticalAlign: "middle", marginRight: "5px" }}
         />
-        {showTitle === true && title}
+        BBC
       </NavLink>
-      <NavLink className="icon" to="/catalog">
-        <Bicycle
-          height={24}
-          width={24}
-          style={{
-            verticalAlign: "middle",
-            marginLeft: "25px",
-            marginRight: "5px",
-          }}
-        />
-        {showTitle === true && collection}
-      </NavLink>
-
-      <NavLink className="icon" to="/friends">
-        <People
-          height={24}
-          width={24}
-          style={{
-            verticalAlign: "middle",
-            marginLeft: "20px",
-            marginRight: "5px",
-          }}
-        />
-        {showTitle === true && friends}
-      </NavLink>
-
-      <NavLink className="icon" to="/marketplace">
-        <Shop
-          height={24}
-          width={24}
-          style={{
-            verticalAlign: "middle",
-            marginLeft: "20px",
-            marginRight: "5px",
-          }}
-        />
-        {showTitle === true && market}
-      </NavLink>
-    </div>
+      <button
+        className="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+        style={{ marginRight: "10px" }}
+      >
+        <span className="navbar-toggler-icon"></span>
+      </button>
+      <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul className="navbar-nav mr-auto">
+          <li className="nav-item">
+            <NavLink
+              className="nav-link"
+              to="/members"
+              style={{
+                margin: "20px",
+                fontFamily: "arial",
+              }}
+            >
+              Members
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink
+              className="nav-link"
+              to="/catalog"
+              style={{
+                margin: "20px",
+                fontFamily: "arial",
+              }}
+            >
+              Vault
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink
+              className="nav-link"
+              to="/sos"
+              style={{
+                margin: "20px",
+                fontFamily: "arial",
+              }}
+            >
+              SOS
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink
+              className="nav-link"
+              to="/marketplace"
+              style={{
+                margin: "20px",
+                fontFamily: "arial",
+              }}
+            >
+              Profile
+            </NavLink>
+          </li>
+        </ul>
+      </div>
+    </nav>
   );
 }
 

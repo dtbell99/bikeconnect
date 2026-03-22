@@ -12,6 +12,7 @@
 body {
   width: auto;
   margin: 0;
+  /* background-color: #f6f6f6; */
 }
 
 @keyframes logo-spin {
@@ -30,12 +31,13 @@ body {
 }
 
 .bcnav {
-  background-color: #fcfbfc;
   width: auto;
   display: flex;
   align-items: center;
   flex-direction: row;
   overflow: none;
+  margin: 10px;
+  height: 25px;
 }
 
 .icon {
