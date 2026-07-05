@@ -1,7 +1,7 @@
-import express, { Request, Response } from "express";
-import { getBike, getBikeList, saveBike } from "../service/bikeservice";
-import { auth } from "../middleware/authorizer";
-import { Bike } from "../model/bike";
+import express, { type Request, type Response } from "express";
+import { getBike, getBikeList, saveBike } from "#service/bikeservice.ts";
+import { auth } from "#middleware/authorizer.ts";
+import type { Bike } from "#model/bikeconnect.ts";
 
 class BikeRouter {
   public router: express.Router;

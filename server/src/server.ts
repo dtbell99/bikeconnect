@@ -1,9 +1,10 @@
 import "dotenv/config";
 
-import express, { Request, Response } from "express";
+import express, { type Request, type Response } from "express";
 import bodyParser from "body-parser";
 
-import bikeRouter from "./routes/bike";
+import bikeRouter from "#routes/bike.ts";
+import authRouter from "#routes/auth.ts";
 
 class Server {
   private app: express.Express;
@@ -21,6 +22,7 @@ class Server {
       res.send("If you see this you should be out riding your bike!");
     });
     this.app.use("/api/bike", bikeRouter);
+    this.app.use("/api/auth", authRouter);
   }
 
   private setupMiddleware() {

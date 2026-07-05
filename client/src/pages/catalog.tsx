@@ -1,52 +1,12 @@
-import { Link } from "react-router";
-import BikeCard from "../components/bikecard";
-import type { Bike } from "../model/bike";
-import { Bicycle } from "react-bootstrap-icons";
-import { useEffect, useState } from "react";
+import Add from "../components/add";
+import Auth from "../components/auth";
 
 function Catalog() {
-  const [bikeList, setBikeList] = useState<Bike[]>([]);
-
-  const bikes = bikeList.map((bike, indx) => {
-    return (
-      <div style={{ padding: "5px" }} key={indx}>
-        <BikeCard bike={bike} />
-      </div>
-    );
-  });
-
-  useEffect(() => {
-    async function getbikes() {
-      const resp = await fetch("/api/bike/list");
-      if (resp.ok) {
-        const json = await resp.json();
-        setBikeList(json);
-      }
-    }
-    getbikes();
-  }, []);
-
   return (
     <>
-      <h1>Bike Collection</h1>
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-        }}
-      >
-        {bikes}
-      </div>
-      <br />
-      <br />
-      <Link to="/bike?id=0" className="actionButton">
-        <Bicycle
-          width="32px"
-          height="32px"
-          style={{ verticalAlign: "middle" }}
-        />
-        &nbsp;Add
-      </Link>
+      <Auth />
+      <h1>Catalog</h1>
+      <Add />
     </>
   );
 }

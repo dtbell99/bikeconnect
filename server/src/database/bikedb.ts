@@ -1,5 +1,5 @@
-import { getClient } from "./client";
-import { Bike } from "../model/bike";
+import { getClient } from "./client.ts";
+import type { Bike } from "#model/bikeconnect.ts";
 
 export async function insertBike(bike: Bike, owner: string) {
   let client;

@@ -3,8 +3,8 @@ import {
   queryBike,
   queryBikeList,
   updateBike,
-} from "../database/bikedb";
-import { Bike } from "../model/bike";
+} from "#database/bikedb.ts";
+import type { Bike } from "#model/bikeconnect.ts";
 
 type DBBike = {
   id: number;
@@ -31,7 +31,7 @@ export async function getBikeList(owner: string) {
   console.log("getBikeList");
   const bikeList: Bike[] = [];
   const resp = await queryBikeList(owner);
-  if (resp.rows) {
+  if (resp?.rows) {
     for (const itm of resp.rows) {
       bikeList.push(convertBikeFromDBBike(itm));
     }
