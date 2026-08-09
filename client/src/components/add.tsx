@@ -8,15 +8,21 @@ function Add() {
   };
 
   return (
-    <>
-      <select onBlur={add} onChange={(e) => setType(e.target.value)}>
+    <div className="catalog-item-adder">
+      <select
+        className="select-dropdown"
+        onBlur={add}
+        onChange={(e) => setType(e.target.value)}
+      >
         <option value="bike">Bike</option>
         <option value="parts">Part</option>
         <option value="clothing">Clothing</option>
         <option value="misc">Misc Item</option>
       </select>
-      <button onClick={add}>Create</button>
-    </>
+      <button className="btn btn-primary" onClick={add}>
+        Create
+      </button>
+    </div>
   );
 }
 

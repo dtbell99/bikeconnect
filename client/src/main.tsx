@@ -1,6 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router";
+import "./app.css";
 import Layout from "./components/layout";
 import Home from "./pages/home";
 import Catalog from "./pages/catalog";

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { post } from "../util/http";
 import { useNavigate } from "react-router";
 
-function Catalog() {
+function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState<string>("");
   const [alert, setAlert] = useState<string>("");
@@ -23,18 +23,45 @@ function Catalog() {
   }
 
   return (
-    <>
-      <h1>Login</h1>
-      {alert && <div>{alert}</div>}
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="user@domain.com"
-      />
-      <button onClick={sendLogin}>Login</button>
-    </>
+    <div className="card-container" style={{ marginBlockStart: "2rem" }}>
+      <h1 className="text-center" style={{ marginBlockEnd: "0.5rem" }}>
+        Login
+      </h1>
+      <p className="text-center" style={{ marginBlockEnd: "2rem" }}>
+        Enter your email to access your BikeConnect portal.
+      </p>
+
+      {alert && (
+        <div className="alert-box alert-error" role="alert">
+          <span style={{ fontSize: "1.2rem" }}>⚠️</span>
+          <span>{alert}</span>
+        </div>
+      )}
+
+      <div className="form-group">
+        <label htmlFor="email-input" className="label-text">
+          Email Address
+        </label>
+        <input
+          id="email-input"
+          className="input-text"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="user@domain.com"
+          required
+        />
+      </div>
+
+      <button
+        className="btn btn-primary"
+        style={{ inlineSize: "100%", marginBlockStart: "0.5rem" }}
+        onClick={sendLogin}
+      >
+        Sign In
+      </button>
+    </div>
   );
 }
 
-export default Catalog;
+export default Login;
